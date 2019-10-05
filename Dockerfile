@@ -19,6 +19,7 @@ RUN pip install --upgrade pip \
     	gunicorn \
     	ipython \
     	celery \
-    	Flask-Cors
+    	Flask-Cors\
+    	pytest
 
 COPY . .
