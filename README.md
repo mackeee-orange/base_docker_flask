@@ -18,5 +18,36 @@ $ make build_up
 
 ## 基礎フォルダ構造の解説
 ```text
+.
+├── Dockerfile              // アプリケーション自体のDockerfile
+├── Makefile                // `make XXX`みたいなコマンドでいろんなコマンドを簡略化するためのファいうr
+├── README.md               // まず読みましょうというもの
+├── app                     // アプリケーションのソースコードが入るフォルダ *1
+│   ├── __init__.py
+│   ├── application.py      // アプリケーションに様々なパッケージを適用して初期化する
+│   ├── config.py           // アプリケーションの設定
+│   ├── database.py         // データベースの初期化
+│   ├── jobs                // 非同期などで実行したいジョブを入れる
+│   │   └── __init__.py
+│   ├── lib                 // アプリ内で使う独自ライブラリなどを配置
+│   │   └── __init__.py
+│   ├── models              // モデルを入れる
+│   │   └── __init__.py
+│   ├── static              // 画像やスタイルシートを入れる
+│   │   ├── img
+│   │   ├── javascript
+│   │   └── stylesheet
+│   ├── tasks.py            // celeryに渡したいジョブやライブラリなどをimport
+│   ├── templates           // テンプレートが入る
+│   ├── tests               // pytestによって実行したいテストを入れる
+│   │   └── __init__.py
+│   └── views               // viewが入る => views.pyのように1つのファイルにしてもいい
+│       └── __init__.py
+├── docker-compose.yml      
+├── guniconf.py             // gunicornの設定
+├── run.py                  // 起動用ファイル
+└── tmp                     // プログラムによって一時的に生成されるファイルなどを格納する用のフォルダ
+    └── sockets             // ソケットファイルがはいる
 
 ```
+`*1` => 独自のプロジェクト名・アプリ名に変えてもいいが、ソースコード内のパッケージ名も変える必要がある
