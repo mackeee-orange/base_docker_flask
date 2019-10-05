@@ -6,10 +6,10 @@ include .env
 #ifeq ($(FLASK_ENV), production)
 #	DC = COMPOSE_FILE=docker-compose.production.yml docker-compose
 #else
-#    ifeq ($(FLASK_ENV), test)
+#    ifeq ($(PROJECT_ENV), test)
 #        DC = COMPOSE_FILE=docker-compose.test.yml docker-compose
 #    else
-#        DC = COMPOSE_FILE=docker-compose.development.yml docker-compose
+#        DC = PROJECT_ENV=docker-compose.development.yml docker-compose
 #    endif
 #endif
 #project_env_check:
