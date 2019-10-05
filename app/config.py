@@ -18,11 +18,11 @@ class CommonConfig(object):
 
     # SQLAlchemy
     SQLALCHEMY_DATABASE_URI = 'postgresql://{user}:{password}@{host}:{port}/{db_name}'.format(**{
-        "user": os.environ.get("POSTGRES_USER") or "postgres",
-        "password": os.environ.get("POSTGRES_PASSWORD") or "postgres",
-        "host": os.environ.get("POSTGRES_HOST") or "localhost",
+        "user": os.environ.get("DB_USER") or "postgres",
+        "password": os.environ.get("DB_PASSWORD") or "postgres",
+        "host": os.environ.get("DB_HOST") or "localhost",
         "port": 5432,
-        "db_name": os.environ.get("POSTGRES_NAME") or "ghidorah_development",
+        "db_name": os.environ.get("DB_NAME") or "ghidorah_development",
     })
 
     # Celery

@@ -23,10 +23,10 @@ services:
     env_file:
       - .env
     environment:
-      POSTGRES_HOST: db
-      POSTGRES_PASSWORD: password
-      POSTGRES_NAME: db_development
-      POSTGRES_
+      DB_HOST: db
+      DB_PASSWORD: password
+      DB_NAME: db_development
+      DB_
       CELERY_BROKER_URL: redis://redis:6379/0
       CELERY_RESULT_BACKEND: redis://redis:6379/0
 
@@ -41,7 +41,7 @@ services:
     env_file:
       - .env
     environment:
-      POSTGRES_HOST: db
+      DB_HOST: db
       CELERY_BROKER_URL: redis://redis:6379/0
       CELERY_RESULT_BACKEND: redis://redis:6379/0
 
@@ -67,7 +67,7 @@ services:
     networks:
       - nginx_network
 
-  db:
+  db: # データベース用サーバー(Postgresql使用)
     restart: always
     image: postgres:10.4
     ports:
@@ -76,6 +76,6 @@ services:
       - .docker/db/data:/var/lib/postgresql/data
       - .docker/db/initializers:/docker-entrypoint-initdb.d
     environment:
-      POSTGRES_USER: deploy
-      POSTGRES_PASSWORD: postgres
+      DB_USER: deploy
+      DB_PASSWORD: postgres
 
