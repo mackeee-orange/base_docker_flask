@@ -24,9 +24,7 @@ services:
       - .env
     environment:
       DB_HOST: db
-      DB_PASSWORD: password
-      DB_NAME: db_development
-      DB_
+      DB_PORT: 5432
       CELERY_BROKER_URL: redis://redis:6379/0
       CELERY_RESULT_BACKEND: redis://redis:6379/0
 
@@ -76,6 +74,6 @@ services:
       - .docker/db/data:/var/lib/postgresql/data
       - .docker/db/initializers:/docker-entrypoint-initdb.d
     environment:
-      DB_USER: deploy
-      DB_PASSWORD: postgres
+      POSTGRES_USER: ${DB_USER} # こうしておくことで.envファイルのDB_USERに設定されている名のロールが生まれる
+      POSTGRES_PASSWORD: ${DB_PASSWORD} # ロールのパスワードもここで設定される
 

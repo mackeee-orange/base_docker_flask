@@ -1,43 +1,32 @@
 include .env
 
-.DEFAULT_GOAL=help
+.DEFAULT_GOAL=build
+
+# ENVごとにコマンドやcomposeファイル使い分けたい時に使う
+#ifeq ($(FLASK_ENV), production)
+#	DC = COMPOSE_FILE=docker-compose.production.yml docker-compose
+#else
+#    ifeq ($(FLASK_ENV), test)
+#        DC = COMPOSE_FILE=docker-compose.test.yml docker-compose
+#    else
+#        DC = COMPOSE_FILE=docker-compose.development.yml docker-compose
+#    endif
+#endif
+#project_env_check:
+#	@$(eval PROJECT_ENV := $(shell read -p "ENV? (prd or stg): " ENV; echo $$ENV))
+#	@echo "run command in $(PROJECT_ENV)"
+
+DC = docker-compose
 
 APP = docker-compose exec app
 FLASK = $(APP) flask
 
-CD_NGINX = cd docker/nginx
-CD_REDIS = cd docker/redis
-
-
-# Targets
-help:
-	@echo "Targets:"
-	@echo "  Container:"
-	@echo "    => build"
-	@echo "    => up"
-	@echo "    => build_up"
-	@echo "    => down"
-	@echo "    => logs"
-	@echo "    => clean"
-	@echo ""
-	@echo "  Bundle Command:"
-	@echo "    => bundle_install"
-	@echo "    => bundle_remove"
-	@echo ""
-	@echo "  Rails Command:"
-	@echo "    => rails_console"
-	@echo "    => rails_routes"
-	@echo "    => rspec"
-	@echo "    => rubocop"
-	@echo ""
-	@echo "  DB Command:"
-	@echo "    => db_create"
-	@echo "    => db_migrate"
-	@echo "    => db_seed"
+CD_NGINX = cd .docker/nginx
+CD_REDIS = cd .docker/redis
 
 
 # コンテナ操作コマンド
-.PHONY: bundle up build_up down logs clean test
+.PHONY: build up build_up restart force_restart down logs clean test
 build:
 	$(DC) build
 up:
@@ -60,7 +49,7 @@ test:
 	$(APP) pytest
 
 # DB関連コマンド
-.PHONY: db_migrate db_upgrade
+.PHONY: db_migrate db_upgrade db_downgrade
 db_migrate:
 	@$(FLASK) db migrate
 db_upgrade:

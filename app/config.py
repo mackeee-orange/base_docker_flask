@@ -21,7 +21,7 @@ class CommonConfig(object):
         "user": os.environ.get("DB_USER") or "postgres",
         "password": os.environ.get("DB_PASSWORD") or "postgres",
         "host": os.environ.get("DB_HOST") or "localhost",
-        "port": 5432,
+        "port": os.environ.get("DB_PORT") or 5432,
         "db_name": os.environ.get("DB_NAME") or "ghidorah_development",
     })
 
