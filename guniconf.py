@@ -6,7 +6,7 @@ import multiprocessing
 import os
 
 # Server Socket
-bind = 'unix:{}/tmp/sockets/ghidorah_gunicorn.sock'.format(os.getcwd())
+bind = 'unix:{}/tmp/sockets/app_gunicorn.sock'.format(os.getcwd())
 backlog = 2048
 
 # Worker Processes
@@ -20,9 +20,9 @@ debug = False
 spew = False
 
 # Logging
-logfile = '/var/www/ghidorah/log/production.log'
+logfile = '/var/www/app/log/production.log'
 loglevel = 'info'
 logconfig = None
 
 # Process Name
-proc_name = 'ghidorah_production'
+proc_name = 'app_production'

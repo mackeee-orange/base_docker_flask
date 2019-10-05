@@ -12,7 +12,7 @@ $ make build_up
 ```
 
 これでサーバーがたちます
-`http://localhost:5000`
+`http://localhost:8000`
 にアクセスすればみれます  
 
 
