@@ -28,20 +28,20 @@ services:
       CELERY_BROKER_URL: redis://redis:6379/0
       CELERY_RESULT_BACKEND: redis://redis:6379/0
 
-  worker:  # ジョブを走らせるコンテナ
-    build: .
-    command: ./run_celery.sh
-    depends_on:
-      - app
-      - redis
-    volumes:
-      - .:/var/www/app
-    env_file:
-      - .env
-    environment:
-      DB_HOST: db
-      CELERY_BROKER_URL: redis://redis:6379/0
-      CELERY_RESULT_BACKEND: redis://redis:6379/0
+#  worker:  # ジョブを走らせるコンテナ
+#    build: .
+#    command: celery worker -B -l info -A run.celery
+#    depends_on:
+#      - app
+#      - redis
+#    volumes:
+#      - .:/var/www/app
+#    env_file:
+#      - .env
+#    environment:
+#      DB_HOST: db
+#      CELERY_BROKER_URL: redis://redis:6379/0
+#      CELERY_RESULT_BACKEND: redis://redis:6379/0
 
   redis:  # ジョブを非同期で動かすために必要
     image: redis

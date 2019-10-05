@@ -9,6 +9,6 @@ WORKDIR /var/www/app
 
 # 必要なpipパッケージはここに追加していく
 RUN pip install --upgrade pip \
-    && pip install -r flask Flask-Migrate Flask-SQLAlchemy python-dotenv gunicorn ipython
+    && pip install flask Flask-Migrate Flask-SQLAlchemy python-dotenv gunicorn ipython
 
 COPY . .
