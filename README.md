@@ -24,6 +24,14 @@ $ make build_up
 ├── Dockerfile              // アプリケーション自体のDockerfile
 ├── Makefile                // `make XXX`みたいなコマンドでいろんなコマンドを簡略化するためのファいうr
 ├── README.md               // まず読みましょうというもの
+├── .docker                 // アプリケーション以外のdockerで立ち上げるものたち
+│   ├── db
+│   │   ├── initializers/01_createdb.sql    // サーバー立ち上げた時にこの内容によってデフォルトのROLEとDBができる         
+│   │   └── data/           // 実際のデータベースのデータが同期される
+│   ├── nginx
+│   │   ├── app.conf        // Nginxの設定         
+│   │   └── Dockerfile
+│   └── redis               // 非同期ジョブ実行の際に使われる揮発性DB
 ├── app                     // アプリケーションのソースコードが入るフォルダ *1
 │   ├── __init__.py
 │   ├── application.py      // アプリケーションに様々なパッケージを適用して初期化する
