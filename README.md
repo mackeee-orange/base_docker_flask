@@ -4,7 +4,9 @@
 #### 1. このテンプレートrepoから自分のリポジトリを作成
 ![img](https://i.imgur.com/AlA5ZcQ.png)
 
-#### 2. Dockerを使ってビルド => アップ
+#### 2. `.env.sample`を参考に`.env`ファイルを`.env.sample`と同じ場所に作成
+
+#### 3. Dockerを使ってビルド => アップ
 __Dockerが入ってないと動きません__  
 
 ```bash
