@@ -48,6 +48,9 @@ clean:
 test:
 	$(APP) pytest
 
+app_console:
+	$(APP) /bin/bash
+
 # DB関連コマンド
 .PHONY: db_migrate db_upgrade db_downgrade
 db_migrate:
